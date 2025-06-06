@@ -25,7 +25,6 @@ export const Report = () => {
                     const pdfObjectUrl = URL.createObjectURL(blob);
                     setPdfUrl(pdfObjectUrl);
                     setReportStatus('ready');
-
                 } else if (contentType && contentType.includes("application/json")) {
                     // Если это JSON, разбираем как JSON
                     const json = await response.json();
@@ -33,7 +32,6 @@ export const Report = () => {
                     if (json.status === "в обработке") {
                         setReportStatus('inProgress');
                     }
-
                 } else {
                     throw new Error("Неподдерживаемый формат данных");
                 }
