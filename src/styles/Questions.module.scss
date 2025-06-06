@@ -1,0 +1,210 @@
+@use './variables' as *;
+
+.formContainer {
+  .title {
+    font-size: 20px;
+    font-weight: 700;
+    text-align: left;
+    color: $black;
+    margin-bottom: 24px;
+
+    &.itemTitle {
+      margin-bottom: 32px;
+      margin-top: 64px;
+    }
+  }
+
+  .input {
+    border: 1px solid rgb(160, 169, 184);
+    border-radius: 6px;
+    background: $white;
+    outline: none;
+    transition: all .2s linear;
+    padding: 10px 12px;
+    width: 100%;
+    color: $default;
+    font-size: 14px;
+    font-weight: 400;
+
+    &:focus {
+      border: 1px solid $purple;
+    }
+  }
+
+  .section {
+    .questionWrapper {
+      text-align: left;
+
+      &.radio {
+        margin-bottom: 32px;
+      }
+
+      .desc {
+        text-align: left;
+        margin-bottom: 4px;
+        margin-top: 16px;
+
+        &.margin {
+          margin-top: 16px;
+        }
+      }
+
+      .textarea {
+        border: 1px solid $muted;
+        border-radius: 6px;
+        background: $white;
+        outline: none;
+        padding: 10px 12px;
+        color: $default;
+        font-size: 14px;
+        font-weight: 400;
+        width: 100%;
+        height: 96px;
+        resize: none;
+        transition: all .3s linear;
+
+        &::-webkit-scrollbar {
+          width: 8px;
+          height: 8px;
+        }
+
+        &::-webkit-scrollbar-thumb {
+          background-color: $purple;
+          border-radius: 10px;
+          border: 2px solid $white;
+        }
+
+        &::-webkit-scrollbar-track {
+          background-color: #f0f0f0;
+          border-radius: 10px;
+        }
+
+        &:focus {
+          border: 1px solid $purple;
+        }
+      }
+
+      input[type="radio"] {
+        display: none;
+      }
+
+      .radioWrapper {
+        display: flex;
+        gap: 25px;
+      }
+
+      .option {
+        position: relative;
+        display: flex;
+        align-items: center;
+        font-size: 16px;
+        cursor: pointer;
+
+        span {
+          height: 20px;
+        }
+      }
+
+      .option input[type="radio"]:not(:checked) + span::before {
+        content: "";
+        position: absolute;
+        left: 0;
+        top: 50%;
+        transform: translateY(-50%);
+        width: 20px;
+        height: 20px;
+        border-radius: 50%;
+        background-color: $surface5;
+      }
+
+      .option:hover input[type="radio"]:not(:checked) + span::before {
+        content: "";
+        position: absolute;
+        left: 0;
+        top: 50%;
+        transform: translateY(-50%);
+        width: 7px;
+        height: 7px;
+        border-radius: 50%;
+        background-color: $blue100;
+        border: 7px solid $blue100;
+      }
+
+      .option input[type="radio"]:checked + span::before {
+        content: "";
+        position: absolute;
+        left: 0;
+        top: 50%;
+        transform: translateY(-50%);
+        width: 7px;
+        height: 7px;
+        border-radius: 50%;
+        background-color: $white;
+        border: 7px solid $blue100;
+      }
+
+      .option:hover input[type="radio"]:checked + span::before {
+        content: "";
+        position: absolute;
+        left: 0;
+        top: 50%;
+        transform: translateY(-50%);
+        width: 7px;
+        height: 7px;
+        border-radius: 50%;
+        background-color: $white;
+        border: 7px solid $blue110;
+      }
+
+      .option span {
+        position: relative;
+        padding-left: 24px;
+        cursor: pointer;
+        user-select: none;
+      }
+    }
+  }
+}
+
+.footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-top: 64px;
+
+  .desc {
+    color: $muted;
+    font-size: 14px;
+    font-weight: 700;
+  }
+
+  .buttonsWrapper {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+
+    div {
+      color: $white;
+    }
+
+    .backBtn {
+      background: $blue50;
+      color: $default;
+    }
+  }
+}
+
+.date {
+  background-color: $white;
+  border: 1px solid $muted;
+  border-radius: 8px;
+  padding: 10px;
+  font-size: 14px;
+  color: $default;
+
+  &:focus {
+    border-color: $purple;
+    outline: none;
+  }
+}
+

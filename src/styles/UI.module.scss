@@ -1,0 +1,25 @@
+@use './variables' as *;
+
+.button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  width: max-content;
+  border-radius: 100px;
+  background: $blue100;
+  cursor: pointer;
+  padding: 10px 24px;
+  transition: all .4s ease;
+
+  &:hover {
+    background-color: $blue110;
+  }
+
+  &.disabled {
+    background-color: $disabled-btn;
+    transform: none;
+    pointer-events: none;
+    cursor: not-allowed;
+  }
+}

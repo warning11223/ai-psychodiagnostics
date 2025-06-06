@@ -1,0 +1,41 @@
+@use './variables' as *;
+
+.reportWrapper {
+  height: 100%;
+
+  .title {
+    color: $default;
+    font-size: 25px;
+    font-weight: 700;
+  }
+
+  .reportReady {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 100%;
+  }
+
+  .container {
+    display: flex;
+    align-items:  center;
+    justify-content: space-between;
+
+    .desc {
+      color: $muted;
+      font-size: 14px;
+      font-weight: 700;
+    }
+
+    .btnsWrapper {
+      display: flex;
+      align-items:  center;
+      gap: 8px;
+      justify-content: flex-end;
+
+      div {
+        color: $white;
+      }
+    }
+  }
+}

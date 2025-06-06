@@ -1,0 +1,23 @@
+@use './variables' as *;
+
+.descWrapper {
+  margin-top: 64px;
+  padding: 24px;
+  background: $red50;
+  border-radius: 8px;
+
+  .block, .bottomBlock {
+    display: flex;
+    gap: 16px;
+
+    p {
+      color: $default;
+      font-size: 14px;
+      font-weight: 400;
+    }
+  }
+
+  .block {
+    margin-bottom: 16px;
+  }
+}

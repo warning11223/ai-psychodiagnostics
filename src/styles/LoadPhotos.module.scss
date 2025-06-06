@@ -1,0 +1,171 @@
+@use './variables' as *;
+
+.block {
+  padding: 64px 64px 32px 64px;
+  background-color: $white;
+  border-radius: 20px;
+  box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
+  max-width: 904px;
+  min-height: 504px;
+  margin: 0 auto;
+
+  &.height {
+    height: 0;
+  }
+}
+
+.photoUploadScreen {
+  .title {
+    font-size: 20px;
+    font-weight: 700;
+    text-align: left;
+    margin-bottom: 8px;
+    color: $dark;
+  }
+}
+
+.errorWrapper {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 32px;
+  border-radius: 100px;
+  background: $red50;
+  padding: 8px 12px 8px 12px;
+  width: max-content;
+
+}
+
+.errorMessage {
+  color: $red;
+  font-size: 14px;
+  font-weight: 400;
+  text-align: left;
+
+}
+
+.fileUploadContainer {
+  display: flex;
+  justify-content: space-around;
+  margin-bottom: 64px;
+}
+
+.fileBox {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  width: 216px;
+  height: 161px;
+
+
+  position: relative;
+  border-radius: 8px;
+  background: #eeeeee;
+
+  input {
+    display: none;
+  }
+
+  span {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: $muted;
+    font-size: 14px;
+  }
+}
+
+.desc {
+  padding-top: 8px;
+  color: $dark;
+  font-size: 16px;
+  font-weight: 400;
+}
+
+.downloadWrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 14px;
+  border-radius: 8px;
+  background: $blue60;
+  cursor: pointer;
+
+  &.absolute {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+}
+
+.filePreview {
+  margin-top: 5px;
+  text-align: center;
+}
+
+.filePreviewImage {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  margin-bottom: 5px;
+  border-radius: 8px;
+}
+
+.footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  .step {
+    color: $muted;
+    font-size: 14px;
+    font-weight: 700;
+  }
+
+  div {
+    color: $white;
+  }
+}
+
+.block {
+  position: relative;
+}
+
+.progressContainer {
+  position: absolute;
+  top: 0;
+  right: 0;
+  left: 0;
+  width: 100%;
+  height: 16px;
+  background-color: $surface5;
+  border-radius: 20px 20px 0 0;
+
+  margin-bottom: 20px;
+}
+
+.progressBar {
+  height: 100%;
+  background-color: $blue100;
+  border-radius: 20px 0 0 0;
+
+  transition: width 0.3s ease;
+
+  &.borderRight {
+    border-radius: 20px 20px 0 0;
+  }
+}
+
+.disabledIcon {
+  svg {
+    color: red !important;
+
+    fill: red;
+  }
+}
