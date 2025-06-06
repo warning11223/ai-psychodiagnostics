@@ -74,7 +74,15 @@ export function Questions() {
                     <div key={item.section} className={styles.section}>
                         <p className={`${styles.title} ${index !== 0 && styles.itemTitle}`}>{item.section}</p>
                         {item.questions.map((question) => (
-                            <div key={question.id} className={`${styles.questionWrapper} ${question.type === "radio" && styles.radio}`}>
+                            <div
+                                key={question.id}
+                                className={`
+                                    ${styles.questionWrapper} 
+                                    ${question.type === "radio" && styles.radio}
+                                    ${question.id === "childGender" && styles.margin}
+                                    ${question.type === "textarea" && styles.textarea}
+                                `}
+                            >
                                 {question.question && (
                                     <p className={`${styles.desc} ${question.id === "childDOB" && styles.margin}`}>{question.question}</p>
                                 )}
@@ -98,7 +106,13 @@ export function Questions() {
                                     />
                                 )}
                                 {question.type === 'radio' && (
-                                    <div className={styles.radioWrapper}>
+                                    <div
+                                        className={`
+                                            ${styles.radioWrapper} 
+                                            ${question.id === "emotionalState" && styles.width}
+                                            ${question.id === "childGender" && styles.flex}
+                                        `}
+                                    >
                                         {question.options?.map((option, index) => (
                                             <label key={index} className={styles.option}>
                                                 <input

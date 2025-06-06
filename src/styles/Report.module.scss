@@ -18,7 +18,7 @@
 
   .container {
     display: flex;
-    align-items:  center;
+    align-items: flex-end;
     justify-content: space-between;
 
     .desc {
@@ -35,6 +35,21 @@
 
       div {
         color: $white;
+      }
+    }
+
+    @media (max-width: 768px) {
+      flex-direction: column-reverse;
+      align-items: flex-start;
+      gap: 24px;
+
+      .btnsWrapper {
+        flex-direction: column;
+        width: 100%;
+
+        a {
+          width: 100%;
+        }
       }
     }
   }

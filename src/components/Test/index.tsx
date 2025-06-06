@@ -13,7 +13,7 @@ function Test() {
     };
 
     return (
-        <div className={`${styles.block} ${step !== 2 && styles.height}`}>
+        <div className={`${styles.block} ${step === 3 && styles.height}`}>
             <div className={styles.progressContainer}>
                 <div
                     className={`${styles.progressBar} ${step === 3 && styles.borderRight}`}

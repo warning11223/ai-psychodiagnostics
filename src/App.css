@@ -3,6 +3,10 @@
   margin: 0 auto;
   padding: 2rem;
   text-align: center;
+
+  @media (max-width: 768px) {
+    padding: 20px 16px;
+  }
 }
 
 .container {
@@ -16,6 +20,14 @@
 
   .logo {
     border-radius: 16px;
+  }
+
+  @media (max-width: 960px) {
+    width: 100%;
+
+    .logo {
+      width: 100%;
+    }
   }
 }
 

@@ -7,11 +7,21 @@
     text-align: left;
     color: $black;
     margin-bottom: 24px;
+    line-height: 110%;
 
     &.itemTitle {
       margin-bottom: 32px;
       margin-top: 64px;
     }
+
+    @media (max-width: 960px) {
+      &.itemTitle {
+        margin-top: 48px;
+        margin-bottom: 24px;
+      }
+    }
+
+
   }
 
   .input {
@@ -39,10 +49,19 @@
         margin-bottom: 32px;
       }
 
+      &.margin {
+        margin-bottom: 16px;
+      }
+
+      &.textarea {
+        margin-top: 24px;
+      }
+
       .desc {
         text-align: left;
-        margin-bottom: 4px;
+        margin-bottom: 8px;
         margin-top: 16px;
+        line-height: 135%;
 
         &.margin {
           margin-top: 16px;
@@ -91,6 +110,23 @@
       .radioWrapper {
         display: flex;
         gap: 25px;
+
+        &.flex {
+          flex-direction: row;
+          gap: 24px;
+        }
+
+        @media (max-width: 960px) {
+          &.width {
+            flex-direction: column;
+            gap: 10px;
+          }
+        }
+
+        @media (max-width: 768px) {
+          flex-direction: column;
+          gap: 8px;
+        }
       }
 
       .option {
@@ -168,7 +204,7 @@
 
 .footer {
   display: flex;
-  align-items: center;
+  align-items: flex-end;
   justify-content: space-between;
   padding-top: 64px;
 
@@ -190,6 +226,25 @@
     .backBtn {
       background: $blue50;
       color: $default;
+    }
+  }
+
+  @media (max-width: 960px) {
+    padding-top: 48px;
+  }
+
+  @media (max-width: 768px) {
+    flex-direction: column-reverse;
+    align-items: flex-start;
+    gap: 24px;
+
+    .buttonsWrapper {
+      flex-direction: column;
+      width: 100%;
+
+      div {
+        width: 100%;
+      }
     }
   }
 }
