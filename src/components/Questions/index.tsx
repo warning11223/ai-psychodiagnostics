@@ -11,6 +11,7 @@ import "react-datepicker/dist/react-datepicker.css";
 import { Description } from "../Description";
 import Loader from "../Loader";
 import type {AppDispatch, RootState} from "../../store";
+import {submitSurvey} from "../../api/submitSurvey.ts";
 
 export function Questions() {
     const dispatch: AppDispatch  = useDispatch();
@@ -29,32 +30,12 @@ export function Questions() {
 
         try {
             dispatch(setLoading(true));
-
-            const response = await fetch('https://sirius-draw-test-94500a1b4a2f.herokuapp.com/submit-survey', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify(dataToSubmit),
-            });
-
-            if (response.ok) {
-                const data = await response.json();
-
-                if (data?.message) {
-                    dispatch(setStep(3));
-                    toast.success(data?.message);
-                }
-            } else {
-                if (response.status === 422) {
-                    toast.error('Заполните все поля');
-                } else {
-                    toast.error('Ошибка при отправке данных');
-                }
-            }
+            const data = await submitSurvey(dataToSubmit);
+            dispatch(setStep(3));
+            toast.success(data.message);
         } catch (error) {
-            console.error('Ошибка при отправке данных:', error);
-            toast.error('Ошибка при отправке данных');
+            const errorMessage = error instanceof Error ? error.message : 'Ошибка при отправке данных';
+            toast.error(errorMessage);
         } finally {
             dispatch(setLoading(false));
         }

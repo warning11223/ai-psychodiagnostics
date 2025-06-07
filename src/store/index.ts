@@ -1,6 +1,5 @@
 import { configureStore } from '@reduxjs/toolkit';
 import uploadPhotosReducer from './slices/uploadPhotosSlice';
-import reportReducer from './slices/reportSlice';
 import questionsReducer from './slices/questionsSlice';
 import {
     persistStore,
@@ -20,18 +19,11 @@ const uploadPhotosPersistConfig = {
     storage
 };
 
-const reportPersistConfig = {
-    key: "report",
-    storage
-};
-
 const persistedUploadPhotosReducer = persistReducer(uploadPhotosPersistConfig, uploadPhotosReducer);
-const persistedReportReducer = persistReducer(reportPersistConfig, reportReducer);
 
 export const store = configureStore({
     reducer: {
         uploadPhotos: persistedUploadPhotosReducer,
-        report: persistedReportReducer,
         questions: questionsReducer
     },
     middleware: (getDefaultMiddleware) =>

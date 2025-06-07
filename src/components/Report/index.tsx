@@ -4,6 +4,7 @@ import type { RootState } from "../../store";
 import Loader from "../Loader";
 import { UIButton } from "../ui/button";
 import styles from "../../styles/Report.module.scss";
+import {fetchReportStatus} from "../../api/fetchReportStatus.ts";
 
 export const Report = () => {
     const [reportStatus, setReportStatus] = useState('loading'); // Статус отчета
@@ -11,44 +12,11 @@ export const Report = () => {
 
     const { taskId } = useSelector((state: RootState) => state.uploadPhotos);
 
-    // Функция для получения статуса отчета
-    const fetchReportStatus = async () => {
-        try {
-            const response = await fetch(`https://sirius-draw-test-94500a1b4a2f.herokuapp.com/report/${taskId}`);
-
-            if (response.ok) {
-                const contentType = response.headers.get("Content-Type");
-
-                // Проверяем, является ли содержимое PDF или JSON
-                if (contentType && contentType.includes("application/pdf")) {
-                    const blob = await response.blob();
-                    const pdfObjectUrl = URL.createObjectURL(blob);
-                    setPdfUrl(pdfObjectUrl);
-                    setReportStatus('ready');
-                } else if (contentType && contentType.includes("application/json")) {
-                    // Если это JSON, разбираем как JSON
-                    const json = await response.json();
-
-                    if (json.status === "в обработке") {
-                        setReportStatus('inProgress');
-                    }
-                } else {
-                    throw new Error("Неподдерживаемый формат данных");
-                }
-            } else {
-                setReportStatus('inProgress');
-            }
-        } catch (error) {
-            console.error('Ошибка при получении статуса отчета:', error);
-            setReportStatus('error');
-        }
-    };
-
     // Таймер для повторного запроса в случае ошибки
     useEffect(() => {
         if (reportStatus === 'error' || reportStatus === 'inProgress') {
             const retryTimer = setTimeout(() => {
-                fetchReportStatus();
+                fetchReportStatus(taskId, setPdfUrl, setReportStatus);
                 setReportStatus('loading');
             }, 10000); // 10 секунд
 
@@ -58,7 +26,7 @@ export const Report = () => {
 
     useEffect(() => {
         if (taskId) {
-            fetchReportStatus();
+            fetchReportStatus(taskId, setPdfUrl, setReportStatus);
         }
     }, [taskId]);
 
@@ -94,7 +62,7 @@ export const Report = () => {
             )}
             {reportStatus === 'error' && (
                 <p className={styles.title}>
-                    Произошла ошибка при получении отчета. Пожалуйста, попробуйте позже.
+                    Произошла ошибка при получении отчета. Повторный запрос через 10 секунд.
                 </p>
             )}
         </div>

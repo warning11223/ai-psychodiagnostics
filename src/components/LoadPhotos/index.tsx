@@ -2,10 +2,10 @@ import { useRef, useState } from 'react';
 import styles from "../../styles/LoadPhotos.module.scss";
 import * as React from "react";
 import { UIButton } from "../ui/button";
-import { toast } from "react-toastify";
 import { useDispatch, useSelector } from "react-redux";
 import type { AppDispatch, RootState } from "../../store";
 import { setStep, setTaskId } from "../../store/slices/uploadPhotosSlice.ts";
+import {uploadPhotos} from "../../api/uploadPhotos.ts";
 
 // Определяем типы для допустимых файлов и размера
 const allowedTypes: string[] = ['image/jpeg', 'image/png', 'image/jpg'];
@@ -41,45 +41,15 @@ export function LoadPhotos() {
     const handleSubmit = async () => {
         try {
             setLoading(true);
-
-            const formData = new FormData();
-
-            photos.forEach((photo) => {
-                if (photo) {
-                    formData.append('files', photo);
-                }
-            });
-
-            const response = await fetch('https://sirius-draw-test-94500a1b4a2f.herokuapp.com/upload', {
-                method: 'POST',
-                headers: {
-                    'Accept': 'application/json',
-                },
-                body: formData,
-            });
-
-            if (response.ok) {
-                const data = await response.json();
-
-                if (response.status === 202) {
-                    toast.success(data?.status);
-                    dispatch(setTaskId(data?.task_id));
-                    dispatch(setStep(2));
-                } else {
-                    toast.error('Ошибка при отправке файлов!');
-                    throw new Error('Ошибка при отправке файла');
-                }
-            } else {
-                throw new Error('Ошибка при отправке файла');
-            }
+            const data = await uploadPhotos(photos);
+            dispatch(setTaskId(data.task_id));
+            dispatch(setStep(2));
         } catch (error) {
-            console.error('Ошибка:', error);
-            toast.error('Произошла ошибка при отправке файлов.');
+            console.error("Ошибка:", error);
         } finally {
             setLoading(false);
         }
     };
-
     return (
         <div className={styles.photoUploadScreen}>
             <h2 className={styles.title}>Загрузите фотографии рисунков</h2>
